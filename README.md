@@ -2,7 +2,7 @@
 MATLAB code for estimating 3D shape from a single specular image proposed in *Shimokawa et al. 2019*.
 * [Takeaki Shimokawa, Akiko Nishio, Masa-aki Sato, Mitsuo Kawato, and Hidehiko Komatsu, "Computational model for human 3D shape perception from a single specular image," Frontiers in Computational Neuroscience 13 (2019) 10](https://doi.org/10.3389/fncom.2019.00010).
 
-Contact [Takeaki Shimokawa](http://www.cns.atr.jp/~shimokawa/) if you have any questions.
+Contact [Takeaki Shimokawa](https://sites.google.com/view/takeakishimokawa/) if you have any questions.
 
 ## Setting up and running a demo code
 1. Clone or download our MATLAB code.
