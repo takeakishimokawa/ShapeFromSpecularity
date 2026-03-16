@@ -38,8 +38,10 @@ true_z2d_noslant = true_z2d + x_slant(1)*(meshX-xcm) + x_slant(2)*(meshY-ycm);
 true_z_noslant = true_z2d_noslant(omega);
 
 %% global depth correlation
-r_g = corr(z,true_z_noslant);
-r_g0 = corr(z,true_z);
+r_g = corrcoef(z,true_z_noslant);
+r_g = r_g(2,1);
+r_g0 = corrcoef(z,true_z);
+r_g0 = r_g0(2,1);
 
 %% local interior correlation
 % removal of the area near the boundary
@@ -63,12 +65,14 @@ for ix = 1 : (Ngrid-1)
         overlap_local_region2d = omega2d_rb.*local_region2d;
         overlap_local_region = find(overlap_local_region2d==1);
         if sum(overlap_local_region2d(:)) > 0.5*sum(local_region2d(:))
-            R_li_noslant(ix,iy) = corr(z2d(overlap_local_region),true_z2d_noslant(overlap_local_region));
-            R_li(ix,iy) = corr(z2d(overlap_local_region),true_z2d(overlap_local_region));
+            tmp = corrcoef(z2d(overlap_local_region),true_z2d_noslant(overlap_local_region));
+            R_li_noslant(ix,iy) = tmp(2,1);
+            tmp = corrcoef(z2d(overlap_local_region),true_z2d(overlap_local_region));
+            R_li(ix,iy) = tmp(2,1);
         end
     end
 end
-r_li = nanmean(R_li_noslant(:));
-r_li0 = nanmean(R_li(:));
+r_li = mean(R_li_noslant(:),'omitnan');
+r_li0 = mean(R_li(:),'omitnan');
 
 end
